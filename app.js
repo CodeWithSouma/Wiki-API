@@ -25,10 +25,24 @@ const articleSchema = new mongoose.Schema({
 //create a model
 const Article = new mongoose.model("Article",articleSchema);
 
+// get request /articles
+//returns all of the articles 
+app.get("/articles",function(req,res){
+
+    Article.find({},function(err,foundArticles){
+       if (!err) {
+        res.send(foundArticles);
+       } else {
+           res.send(err);
+       }
+    });
+
+});
 
 
-//TODO
 
+
+//open 3000 port for client access
 app.listen(3000, function() {
   console.log("Server started on port 3000");
 });
