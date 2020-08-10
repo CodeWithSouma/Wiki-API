@@ -39,7 +39,23 @@ app.get("/articles",function(req,res){
 
 });
 
+// post request /articles
+//create a new articles
+app.post("/articles",function(req,res){
 
+    const newArticle = new Article({
+        title : req.body.title,
+        content:req.body.content
+    });
+
+    newArticle.save(function(err){
+        if (!err) {
+            res.send("Succesfully add a new article");
+        } else {
+            res.send(err);
+        }
+    });
+});
 
 
 //open 3000 port for client access
