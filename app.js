@@ -57,6 +57,18 @@ app.post("/articles",function(req,res){
     });
 });
 
+// delete request /articles
+//delete all of the articles
+app.delete("/articles",function(req,res){
+    Article.deleteMany({},function(err){
+        if (!err) {
+            res.send("Succesfully deleted all articles.");
+        } else {
+            res.send(err);
+        }
+    });
+})
+
 
 //open 3000 port for client access
 app.listen(3000, function() {
