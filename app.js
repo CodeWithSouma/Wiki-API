@@ -98,6 +98,20 @@ app.route("/articles/:articleTitle")
                 res.send(err);
             }
         });
+})
+
+.patch(function(req,res){
+    Article.update(
+        {title:req.params.articleTitle},
+        {$set:req.body},
+        function(err){
+            if (!err) {
+                res.send("Successfully updated the article");
+            } else {
+                res.send(err);
+            }
+        }
+    );
 });
 
 
