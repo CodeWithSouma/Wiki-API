@@ -84,7 +84,22 @@ app.route("/articles/:articleTitle")
             res.send(err);
         }
     });
+})
+
+.put(function(req,res){
+    Article.update(
+        {title:req.params.articleTitle},
+        {title:req.body.title,content:req.body.content},
+        {overwritee:true},
+        function(err){
+            if (!err) {
+                res.send("Succesfully updated.");
+            } else {
+                res.send(err);
+            }
+        });
 });
+
 
 //open 3000 port for client access
 app.listen(3000, function() {
